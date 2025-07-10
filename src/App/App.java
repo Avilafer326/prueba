@@ -39,13 +39,10 @@ public class App {
 
         System.out.println("Introduce un email");
         do {
-            if () {
-
-            }
             email = read.readLine();
             emailCorrecto = email.matches("[-\\w\\.]+@\\w+\\.\\w+");
+            System.out.print("Intente de nuevo:");
         } while (!emailCorrecto);
-
         System.out.println("Se le envió un código de verificación a " + email);
     }
 }
