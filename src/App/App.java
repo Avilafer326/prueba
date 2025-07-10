@@ -12,10 +12,12 @@ public class App {
 
         String user;
         String pass;
+        String verifyPassword;
         String email;
 
-        boolean emailCorrecto;
         boolean nombreCorrecto = false;
+        boolean contraseñaCorrecto = false;
+        boolean emailCorrecto = false;
 
         System.out.println("----------Crear cuenta----------");
         System.out.println("--------------------------------\n");
@@ -24,28 +26,34 @@ public class App {
         do {
             user = (read.readLine());
             if (user.length() < 6) {
-                System.out.println("El nombre debe contener al menos 6 carácteres.\nIntente de nuevo");
+                System.out.print("El nombre debe contener al menos 6 carácteres.\nIntente de nuevo: ");
             } else if (user.length() > 12) {
-                System.out.println("El nombre de usuario no puede contener más de 12 carácteres\nIntente de nuevo");
+                System.out.print("El nombre de usuario no puede contener más de 12 carácteres\nIntente de nuevo: ");
             } else nombreCorrecto = true;
         } while (!nombreCorrecto);
 
 
-
-        System.out.println("Ingrese su contraseña");
+        System.out.print("Ingrese su contraseña: ");
         pass = read.readLine();
-
+        System.out.print("Confirme su contraseña: ");
+        do {
+            verifyPassword = (read.readLine());
+            if (!(pass.equals(verifyPassword))) {
+                System.out.println("Contraseñas no coinciden");
+            } else contraseñaCorrecto = true;
+        } while (!contraseñaCorrecto);
 
 
         System.out.println("Introduce un email");
         do {
             email = read.readLine();
-            emailCorrecto = email.matches("[-\\w\\.]+@\\w+\\.\\w+");
-            System.out.print("Intente de nuevo:");
+            if (email.matches("[-\\w\\.]+@\\w+\\.\\w+")) {
+                emailCorrecto = true;
+            }else {
+                System.out.print("Ingrese un email válido: ");
+            }
         } while (!emailCorrecto);
         System.out.println("Se le envió un código de verificación a " + email);
 
-
-        //olaaaaa
     }
 }
